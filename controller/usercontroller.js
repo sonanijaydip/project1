@@ -1,4 +1,6 @@
 var register_model = require('../model/usermodel')
+var nodemailer = require('nodemailer');
+const storage = require('node-persist')
 
 var loginmodel = false;
 
@@ -69,6 +71,7 @@ exports.logout_user = (req, res) => {
      })
 }
 
+
 exports.alluser = async (req, res) => {
      var data = await register_model.find()
 
@@ -102,4 +105,70 @@ exports.update_user = async (req, res) => {
           status: "update data" + v_id
      })
 }
+
+exports.forget_password = async (req, res) => {
+
+     // var forget = req.params.id
+     var data = await register_model.find({email: req.body.email})
+
+     var send_mail = data[0].email;
+     console.log('send mail', send_mail);
+
+     var OTP = Math.floor(1000 + Math.random() * 9000)
+
+     await storage.init( /* options ... */ );
+     await storage.setItem('OTP',OTP)
+
+     if(data){
+
+          var transporter = nodemailer.createTransport({
+               service: 'gmail',
+               auth: {
+                 user: 'sonanijaydip4@gmail.com',
+                 pass: 'gwwdmrsiojfznxva'
+               }
+             });
+             
+             var mailOptions = {
+               from: 'sonanijaydip4@gmail.com',
+               to: send_mail,
+               subject: 'Sending Email using Node.js',
+               text: 'your otp is '+OTP
+             };
+             
+             transporter.sendMail(mailOptions, function(error, info){
+               if (error) {
+                 console.log(error);
+               } else {
+                 console.log('Email sent: ' + info.response);
+               }
+             });
+             
+     }
+
+     res.status(200).json({
+          status: 'success',
+          data
+     })
+}
+exports.check_otp = async (req,res) => {
+
+     await storage.init()
+     var old_otp = await storage.getItem('OTP')
+     var new_otp = req.body.otp;
+
+     if(old_otp == new_otp){
+          res.status(200).json({
+               status: 'Account Verify'
+               
+          })
+          
+     }
+     else{
+          res.status(200).json({
+               status: 'check your otp'
+          })
+     }
+}
+
 

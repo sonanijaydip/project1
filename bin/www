@@ -16,7 +16,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/project1')
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3500');
 app.set('port', port);
 
 /**

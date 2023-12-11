@@ -1,4 +1,5 @@
 var course = require('../model/coursemodel')
+var coursecontent = require('../model/contentmodel')
 
 exports.add_course = async (req, res) => {
 
@@ -23,13 +24,18 @@ exports.add_course = async (req, res) => {
 }
 
 exports.delete_course = async (req, res) => {
-     v_id = req.params.id
+     v_id = req.params.id;
+
      var data = await course.findByIdAndDelete(v_id)
-     console.log('delete course', data);
-     
+     var c_id = data.content_id
+     console.log('c_id', c_id);
+
+     var c_data = await coursecontent.findByIdAndDelete(c_id)
+     // console.log('c-id', c_data);
+
      res.status(200).json({
           status:'succesfully deleted',
-          data
+
      })
 }
 

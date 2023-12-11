@@ -10,6 +10,8 @@ router.post('/logout', user.logout_user)
 router.get('/alluser', user.alluser)
 router.post('/delete/:id', user.delete_user)
 router.post('/update/:id', user.update_user)
+router.post('/forget_password', user.forget_password)
+router.post('/check_otp',user.check_otp)
 
 /* content */
 
