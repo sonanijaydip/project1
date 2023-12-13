@@ -71,7 +71,6 @@ exports.logout_user = (req, res) => {
      })
 }
 
-
 exports.alluser = async (req, res) => {
      var data = await register_model.find()
 
@@ -125,7 +124,7 @@ exports.forget_password = async (req, res) => {
                service: 'gmail',
                auth: {
                  user: 'sonanijaydip4@gmail.com',
-                 pass: 'gwwdmrsiojfznxva'
+                 pass: 'ochpvloxdimvmtlk'
                }
              });
              
@@ -158,11 +157,22 @@ exports.check_otp = async (req,res) => {
      var new_otp = req.body.otp;
 
      if(old_otp == new_otp){
-          res.status(200).json({
-               status: 'Account Verify'
-               
+          var data = await register_model.find({email: req.body.email})
+
+          var id = data[0].id;
+          var u_password = req.body.password
+          console.log('password', u_password);
+
+          if(data)
+          {
+               var update = await register_model.findByIdAndUpdate(id,{password: u_password})
+
+               res.status(200).json({
+               status: 'password change successful',
+               update
           })
-          
+          }        
+     
      }
      else{
           res.status(200).json({
@@ -170,5 +180,3 @@ exports.check_otp = async (req,res) => {
           })
      }
 }
-
-
