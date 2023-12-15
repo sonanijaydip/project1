@@ -11,7 +11,7 @@ exports.add_course = async (req, res) => {
      })
 }
 
-    exports.select_course = async (req, res) => {
+exports.select_course = async (req, res) => {
      
      var id = req.params.id;
 

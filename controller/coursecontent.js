@@ -37,7 +37,6 @@ exports.delete_content = async (req, res) => {
      
      res.status(200).json({
           status:'successfully deleted',
-          
      })
 }
 

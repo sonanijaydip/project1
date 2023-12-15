@@ -15,6 +15,4 @@ router.post('/check_otp',user.check_otp)
 
 /* content */
 
-
-
 module.exports = router;

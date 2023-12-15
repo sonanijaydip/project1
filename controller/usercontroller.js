@@ -168,7 +168,7 @@ exports.check_otp = async (req,res) => {
                var update = await register_model.findByIdAndUpdate(id,{password: u_password})
 
                res.status(200).json({
-               status: 'password change successful',
+               status: 'password change successfully',
                update
           })
           }        
