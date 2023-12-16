@@ -11,8 +11,6 @@ var course_contentRouter = require('./routes/coursecontent');
 var facultyRouter = require('./routes/faculty');
 var studentRouter = require('./routes/addstudent');
 
-
-
 var app = express();
 
 // view engine setup
