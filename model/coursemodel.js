@@ -9,7 +9,7 @@ var courseSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "content"
         }
-    
+
 })
 
 module.exports = mongoose.model('course', courseSchema)

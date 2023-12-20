@@ -17,7 +17,7 @@ exports.find_student = async (req, res) => {
     // var name = req.params.name;
     // var contact_number = req.params.contact_number;
 
-    var data = await student.findById(v_id)
+    var data = await student.findById(v_id).populate('content_id')
     console.log('id', data);
 
     res.status(200).json({

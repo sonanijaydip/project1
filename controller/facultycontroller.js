@@ -9,6 +9,7 @@ exports.add_faculty = async (req, res) => {
         data
     })
 }
+
 exports.find_faculty = async (req, res) => {
     
     v_id = req.params.id
