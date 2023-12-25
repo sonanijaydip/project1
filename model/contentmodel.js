@@ -16,7 +16,6 @@ var contentSchema = new mongoose.Schema({
         type: Number,
     }
     
-
 })
 
 module.exports = mongoose.model('content', contentSchema);

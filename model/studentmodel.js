@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 var studentSchema = new mongoose.Schema({
     name: { type: String },
     surname: { type: String },
@@ -22,6 +23,9 @@ var studentSchema = new mongoose.Schema({
     pc_laptop: {
         type: String,
         default: "PC"
+    },
+    installment:{
+        type: Array
     }
 
 });
